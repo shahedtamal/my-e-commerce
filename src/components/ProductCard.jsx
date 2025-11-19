@@ -1,0 +1,31 @@
+import React from "react";
+
+// এই কার্ডটি ছবি, নাম, দাম ইত্যাদি props হিসেবে গ্রহণ করবে
+function ProductCard({ image, title, description, price }) {
+  return (
+    <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300">
+      <div className="h-56 w-full overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover hover:scale-110 transition duration-500"
+        />
+      </div>
+      <div className="p-5">
+        <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
+        <div className="flex justify-between items-center mt-4">
+          <span className="text-2xl font-bold text-blue-600">{price}</span>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition flex items-center gap-2"
+            onClick={() => alert(`${title} added to cart!`)} // আপাতত ক্লিক করলে এলার্ট দিবে
+          >
+            🛒 Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ProductCard;
