@@ -1,0 +1,48 @@
+{
+  "phones": [
+    {
+      "id": "1",
+      "title": "iPhone 17 Pro - Silver",
+      "description": "Experience the future with the stunning Silver Titanium finish.",
+      "price": "$1199",
+      "image": "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1480&auto=format&fit=crop"
+    },
+    {
+      "id": "2",
+      "title": "iPhone 17 Pro - Max",
+      "description": "Bigger screen, better battery, same stunning performance.",
+      "price": "$1299",
+      "image": "https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=1470&auto=format&fit=crop"
+    },
+    {
+      "id": "3",
+      "title": "iPhone 17 - Black",
+      "description": "Classic black finish for the professional look.",
+      "price": "$999",
+      "image": "https://images.unsplash.com/photo-1611472173362-3f53dbd65d80?q=80&w=1534&auto=format&fit=crop"
+    }
+  ],
+  "drones": [
+    {
+      "id": "1",
+      "title": "DJI Mini 5 Pro",
+      "description": "Experience the future with the stunning avoidance system.",
+      "price": "$1199",
+      "image": "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg"
+    },
+    {
+      "id": "2",
+      "title": "DJI Mavic",
+      "description": "Bigger screen, better battery, same stunning performance.",
+      "price": "$1299",
+      "image": "https://images.pexels.com/photos/13310710/pexels-photo-13310710.jpeg"
+    },
+    {
+      "id": "3",
+      "title": "Mavic 2",
+      "description": "Classic black finish for the professional look.",
+      "price": "$999",
+      "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg"
+    }
+  ]
+}
