@@ -1,34 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import ProductCard from "../components/ProductCard";
 
-const ProductPage = () => {
-  const productData = [
-    {
-      id: 1,
-      title: "dji mini 5 pro",
-      description: "Experience the future with the stunning avoidance system.",
-      price: "$1199",
-      image: "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
-    },
-    {
-      id: 2,
-      title: "dji mavic",
-      description: "Bigger screen, better battery, same stunning performance.",
-      price: "$1299",
-      image:
-        "https://images.pexels.com/photos/13310710/pexels-photo-13310710.jpeg",
-    },
-    {
-      id: 3,
-      title: "mavic 2",
-      description: "Classic black finish for the professional look.",
-      price: "$999",
-      image:
-        "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
-    },
-  ];
+function ProductPage() {
+  const API_URL = "http://localhost:5000/products";
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        const filteredData = data.filter((item) => item.category === "drone");
+        setProductData(filteredData);
+      })
+      .catch((error) => console.log("Fetching failed"));
+  }, []);
+
   return (
     <div className="bg-gray-50 min-h-screen pb-10">
       <Navbar />
@@ -58,6 +46,6 @@ const ProductPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ProductPage;
