@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const CartIcon = () => <span className="text-2xl">🛒</span>;
 
 function Navbar() {
+  const [cartItemCount, setCartItemCount] = useState(10);
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
       <div
@@ -35,8 +35,12 @@ function Navbar() {
           Products
         </Link>
 
-        <button className="bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition relative">
-          <CartIcon />
+        <button className="bg-gray-200 text-2xl p-2 rounded-full hover:bg-gray-200 transition relative">
+          {/* <CartIcon /> */}
+          🛒
+          <span className="absolute text-sm top-0 text-white bg-red-600 right-[-5px] rounded-full h-5 w-5">
+            {cartItemCount}
+          </span>
         </button>
       </div>
     </nav>
