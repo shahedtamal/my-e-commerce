@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [cartItemCount, setCartItemCount] = useState(10);
+  const API_URL = "http://localhost:5000/cart";
+  const [cartItemCount, setCartItemCount] = useState();
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setCartItemCount(data.length);
+      })
+      .catch((error) => console.log("Fetching failed"));
+  }, []);
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
       <div

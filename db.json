@@ -48,15 +48,15 @@
       "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
       "category": "drone"
     }
-  ]
-  "cart":[
+  ],
+  "cart": [
     {
-      "productId": "1",
-      "quantity": 2
-    },
-    {
-      "productId": "4",
-      "quantity": 1
+      "id": "1",
+      "title": "iPhone 17 Pro - Silver",
+      "description": "Experience the future with the stunning Silver Titanium finish.",
+      "price": "$1199",
+      "image": "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1480&auto=format&fit=crop",
+      "category": "phone"
     }
   ]
 }

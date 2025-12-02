@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProductCard({ image, title, description, price }) {
+function ProductCard({ image, title, description, price, HandleClick }) {
   return (
     <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300">
       <div className="h-56 w-full overflow-hidden">
@@ -17,7 +17,7 @@ function ProductCard({ image, title, description, price }) {
           <span className="text-2xl font-bold text-blue-600">{price}</span>
           <button
             className=" bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition flex items-center gap-2"
-            onClick={() => alert(`${title} added to cart!`)}
+            onClick={HandleClick}
           >
             🛒 Add to Cart
           </button>
