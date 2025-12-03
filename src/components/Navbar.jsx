@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   const API_URL = "http://localhost:5000/cart";
   const [cartItemCount, setCartItemCount] = useState();
 
-  useEffect(() => {
+  function fetchCartItems() {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setCartItemCount(data.length);
       })
       .catch((error) => console.log("Fetching failed"));
-  }, []);
+  }
+  useEffect(() => {
+    fetchCartItems();
+  }, [props.isUpdated === true]);
   return (
-    <nav className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
+    <nav className="bg- white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
       <div
         className="relative h-12 w-40 rounded-lg overflow-hidden flex items-center justify-center"
         style={{

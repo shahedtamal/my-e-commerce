@@ -6,8 +6,7 @@ import ProductCard from "../components/ProductCard";
 function ProductPage() {
   const API_URL = "http://localhost:5000/products";
   const [productData, setProductData] = useState([]);
-
-  useEffect(() => {
+  function droneData() {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
@@ -15,6 +14,9 @@ function ProductPage() {
         setProductData(filteredData);
       })
       .catch((error) => console.log("Fetching failed"));
+  }
+  useEffect(() => {
+    droneData();
   }, []);
 
   return (
