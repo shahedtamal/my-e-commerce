@@ -4,7 +4,7 @@ import HeroSection from "../components/HeroSection";
 import ProductCard from "../components/ProductCard";
 
 function ProductPage() {
-  const API_URL = "http://localhost:5000/products";
+  const API_URL = "http://localhost:5001/products";
   const [productData, setProductData] = useState([]);
   function droneData() {
     fetch(API_URL)

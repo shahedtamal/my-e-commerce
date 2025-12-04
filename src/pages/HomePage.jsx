@@ -5,13 +5,11 @@ import ProductCard from "../components/ProductCard";
 import bgImage from "../../public/images/homebg.avif";
 
 function HomePage() {
-  const API_URL = "http://localhost:5000/products";
-  const CART_API_URL = "http://localhost:5000/cart";
   const [isFlag, setIsFlag] = useState(false);
   const [homeData, setHomeData] = useState([]);
 
   async function addToCart(cartItem) {
-    await fetch(CART_API_URL, {
+    await fetch(import.meta.env.VITE_CART_API_URL, {
       method: "POST",
       body: JSON.stringify(cartItem),
     });
@@ -19,7 +17,7 @@ function HomePage() {
     console.log(isFlag);
   }
   function phoneData() {
-    fetch(API_URL)
+    fetch(import.meta.env.VITE_API_URL)
       .then((res) => res.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.category === "phone");

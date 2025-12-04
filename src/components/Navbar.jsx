@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
-  const API_URL = "http://localhost:5000/cart";
+  const API_URL = "http://localhost:5001/cart";
   const [cartItemCount, setCartItemCount] = useState();
 
   function fetchCartItems() {
