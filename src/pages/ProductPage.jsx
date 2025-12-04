@@ -4,10 +4,20 @@ import HeroSection from "../components/HeroSection";
 import ProductCard from "../components/ProductCard";
 
 function ProductPage() {
-  const API_URL = "http://localhost:5001/products";
   const [productData, setProductData] = useState([]);
+  const [isFlag, setIsFlag] = useState(false);
+
+  async function addToCart(cartItem) {
+    await fetch(import.meta.env.VITE_CART_API_URL, {
+      method: "POST",
+      body: JSON.stringify(cartItem),
+    });
+    setIsFlag((prev) => !prev);
+    console.log(isFlag);
+  }
+
   function droneData() {
-    fetch(API_URL)
+    fetch(import.meta.env.VITE_API_URL)
       .then((res) => res.json())
       .then((data) => {
         const filteredData = data.filter((item) => item.category === "drone");
@@ -21,7 +31,7 @@ function ProductPage() {
 
   return (
     <div className="bg-gray-50 min-h-screen pb-10">
-      <Navbar />
+      <Navbar isUpdated={isFlag} />
 
       <HeroSection
         title="Our Exclusive Products"
@@ -35,13 +45,16 @@ function ProductPage() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-3 ">
-          {productData.map((data) => (
+          {productData.map((item) => (
             <ProductCard
-              key={data.id}
-              image={data.image}
-              title={data.title}
-              description={data.description}
-              price={data.price}
+              key={item.id}
+              image={item.image}
+              title={item.title}
+              description={item.description}
+              price={item.price}
+              HandleClick={() => {
+                addToCart(item);
+              }}
             />
           ))}
         </div>

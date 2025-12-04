@@ -48,13 +48,15 @@ function Navbar(props) {
           Products
         </Link>
 
-        <button className="bg-gray-200 text-2xl p-2 rounded-full hover:bg-gray-200 transition relative">
-          {/* <CartIcon /> */}
+        <Link
+          to="/cart"
+          className="bg-gray-200 text-2xl p-2 rounded-full hover:bg-gray-200 transition relative"
+        >
           🛒
-          <span className="absolute text-sm top-0 text-white bg-red-600 right-[-5px] rounded-full h-5 w-5">
+          <span className="absolute text-sm top-0 text-white bg-red-600 right-[-5px] rounded-full h-5 w-5 flex items-center justify-center">
             {cartItemCount}
           </span>
-        </button>
+        </Link>
       </div>
     </nav>
   );
