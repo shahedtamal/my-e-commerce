@@ -51,12 +51,36 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "title": "iPhone 17 Pro - Max",
+      "id": "6",
+      "title": "Mavic 2",
+      "description": "Classic black finish for the professional look.",
+      "price": "$999",
+      "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
+      "category": "drone"
+    },
+    {
+      "id": "4",
+      "title": "DJI Mini 5 Pro",
+      "description": "Experience the future with the stunning avoidance system.",
+      "price": "$1199",
+      "image": "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
+      "category": "drone"
+    },
+    {
+      "id": "5",
+      "title": "DJI Mavic",
       "description": "Bigger screen, better battery, same stunning performance.",
       "price": "$1299",
-      "image": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "category": "phone"
+      "image": "https://images.pexels.com/photos/13310710/pexels-photo-13310710.jpeg",
+      "category": "drone"
+    },
+    {
+      "id": "4",
+      "title": "DJI Mini 5 Pro",
+      "description": "Experience the future with the stunning avoidance system.",
+      "price": "$1199",
+      "image": "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
+      "category": "drone"
     }
   ]
 }

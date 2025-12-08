@@ -6,14 +6,29 @@ import ProductCard from "../components/ProductCard";
 function ProductPage() {
   const [productData, setProductData] = useState([]);
   const [isFlag, setIsFlag] = useState(false);
+  const [cartIds, setCartIds] = useState([]);
+
+  function checkCartData() {
+    fetch(import.meta.env.VITE_CART_API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        const ids = data.map((item) => item.id);
+        setCartIds(ids);
+      })
+      .catch((error) => console.log("Fetching failed"));
+  }
 
   async function addToCart(cartItem) {
-    await fetch(import.meta.env.VITE_CART_API_URL, {
-      method: "POST",
-      body: JSON.stringify(cartItem),
-    });
-    setIsFlag((prev) => !prev);
-    console.log(isFlag);
+    try {
+      await fetch(import.meta.env.VITE_CART_API_URL, {
+        method: "POST",
+        body: JSON.stringify(cartItem),
+      });
+      setIsFlag((prev) => !prev);
+      setCartIds((prevIds) => [...prevIds, cartItem.id]);
+    } catch (error) {
+      console.log("Adding to cart failed", error);
+    }
   }
 
   function droneData() {
@@ -52,6 +67,7 @@ function ProductPage() {
               title={item.title}
               description={item.description}
               price={item.price}
+              isAdded={cartIds.includes(item.id)}
               HandleClick={() => {
                 addToCart(item);
               }}

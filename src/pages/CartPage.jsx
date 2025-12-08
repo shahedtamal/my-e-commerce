@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 function CartPage() {
   const [cartData, setCartData] = useState([]);
-
+  const [isFlag, setIsFlag] = useState(false);
   function fetchCartItems() {
     fetch(import.meta.env.VITE_CART_API_URL)
       .then((res) => res.json())
@@ -12,6 +12,7 @@ function CartPage() {
       })
       .catch((error) => console.log("Fetching failed"));
   }
+
   useEffect(() => {
     fetchCartItems();
   }, []);
@@ -32,6 +33,8 @@ function CartPage() {
       await fetch(`${import.meta.env.VITE_CART_API_URL}/${item.id}`, {
         method: "DELETE",
       });
+      setIsFlag((prev) => !prev);
+      console.log({ isFlag });
       setCartData(cartData.filter((data) => data.id !== item.id));
     } else {
       return;
@@ -40,7 +43,7 @@ function CartPage() {
 
   return (
     <div className="bg-gray-50 min-h-screen pb-10">
-      <Navbar isUpdated={false} />
+      <Navbar isUpdated={isFlag} />
 
       <HeroSection
         title="Your Shopping Cart"

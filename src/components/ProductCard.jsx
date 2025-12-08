@@ -1,6 +1,13 @@
 import React from "react";
 
-function ProductCard({ image, title, description, price, HandleClick }) {
+function ProductCard({
+  image,
+  title,
+  description,
+  price,
+  HandleClick,
+  isAdded,
+}) {
   return (
     <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300">
       <div className="h-56 w-full overflow-hidden">
@@ -16,10 +23,15 @@ function ProductCard({ image, title, description, price, HandleClick }) {
         <div className="flex justify-between items-center mt-4">
           <span className="text-2xl font-bold text-blue-600">{price}</span>
           <button
-            className=" bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition flex items-center gap-2"
+            disabled={isAdded}
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 ${
+              isAdded
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
+            }`}
             onClick={HandleClick}
           >
-            🛒 Add to Cart
+            {isAdded ? <>✅ Added</> : <>🛒 Add to Cart</>}
           </button>
         </div>
       </div>
