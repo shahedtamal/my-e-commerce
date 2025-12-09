@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 function CartPage() {
   const [cartData, setCartData] = useState([]);
   const [isFlag, setIsFlag] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   function fetchCartItems() {
     fetch(import.meta.env.VITE_CART_API_URL)
       .then((res) => res.json())
@@ -11,6 +12,23 @@ function CartPage() {
         setCartData(data);
       })
       .catch((error) => console.log("Fetching failed"));
+  }
+
+  function increament(itemId) {
+    setQuantity((prev) => {
+      return {
+        ...prev,
+        [itemId]: (prev[itemId] || 1) + 1,
+      };
+    });
+  }
+  function decreament(itemId) {
+    setQuantity((prev) => {
+      return {
+        ...prev,
+        [itemId]: (prev[itemId] || 1) - 1,
+      };
+    });
   }
 
   useEffect(() => {
@@ -25,7 +43,7 @@ function CartPage() {
   let cartTotal = 0;
   for (const item of cartData) {
     const price = Number(item.price.replace("$", ""));
-    cartTotal = cartTotal + price;
+    cartTotal = cartTotal + price * (quantity[item.id] || 1);
   }
   async function Delete(item) {
     let choice = window.confirm("are you ok?");
@@ -82,9 +100,24 @@ function CartPage() {
                           <p className="text-blue-600 font-bold text-lg mt-2">
                             {item.price}
                           </p>
-                          <p className="text-gray-500 mt-2">
-                            Quantity: {item.quantity}
-                          </p>
+                          <div className="mt-2 flex gap-2 items-center">
+                            <p className="text-gray-500 mt-2">
+                              Quantity: {item.quantity}
+                            </p>
+                            <button
+                              onClick={() => decreament(item.id)}
+                              className="w-8 h-8 bg-gray-200 rounded-l"
+                            >
+                              -
+                            </button>
+                            <div>{quantity[item.id] || 1}</div>
+                            <button
+                              onClick={() => increament(item.id)}
+                              className="w-8 h-8 bg-gray-200 rounded-r"
+                            >
+                              +
+                            </button>
+                          </div>
                         </div>
 
                         {/* Delete Button */}
@@ -95,7 +128,6 @@ function CartPage() {
                           Delete
                         </button>
                       </div>
-
                       {/* Item Total */}
                       <div className="mt-4 pt-4 border-t">
                         <p className="text-gray-700">
@@ -103,7 +135,7 @@ function CartPage() {
                           <span className="font-bold">
                             $
                             {parseInt(item.price.replace("$", "")) *
-                              item.quantity}
+                              (quantity[item.id] || 1)}
                           </span>
                         </p>
                       </div>
@@ -165,5 +197,4 @@ function CartPage() {
     </div>
   );
 }
-
 export default CartPage;
