@@ -51,14 +51,6 @@
   ],
   "cart": [
     {
-      "id": "5",
-      "title": "DJI Mavic",
-      "description": "Bigger screen, better battery, same stunning performance.",
-      "price": "$1299",
-      "image": "https://images.pexels.com/photos/13310710/pexels-photo-13310710.jpeg",
-      "category": "drone"
-    },
-    {
       "id": "6",
       "title": "Mavic 2",
       "description": "Classic black finish for the professional look.",

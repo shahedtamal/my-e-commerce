@@ -36,10 +36,8 @@ function CartPage() {
   }, []);
 
   // Static totals
-  const itemCount = 5;
-  const subtotal = 5795;
-  const shipping = 0;
-  const total = 5795;
+  const itemCount = cartData.length;
+  const shipping = 15;
   let cartTotal = 0;
   for (const item of cartData) {
     const price = Number(item.price.replace("$", ""));
@@ -169,9 +167,19 @@ function CartPage() {
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-semibold">FREE</span>
+                  <span className="text-gray-600">shipping</span>
+                  {cartTotal >= 2000 ? (
+                    <span className="font-semibold">FREE</span>
+                  ) : (
+                    <span className="font-semibold">${shipping}</span>
+                  )}
                 </div>
+
+                {/* <div className="flex justify-between">
+                  <span className="text-gray-600">Tax</span>
+                  <span className="font-semibold">FREE</span>
+                  <span className="font-semibold">$15</span>
+                </div> */}
 
                 <div className="border-t pt-4 mt-4">
                   <div className="flex justify-between text-xl font-bold">
@@ -188,7 +196,7 @@ function CartPage() {
 
               {/* Simple Note */}
               <p className="mt-6 text-sm text-gray-500 text-center">
-                Secure checkout
+                Unsecure checkout :D
               </p>
             </div>
           </div>
