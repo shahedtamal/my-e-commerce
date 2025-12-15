@@ -47,15 +47,31 @@
       "price": "$999",
       "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
       "category": "drone"
+    },
+    {
+      "id": "1eab",
+      "title": "AntiGravity A1",
+      "category": "drone",
+      "price": "$1599",
+      "description": "First 360 8k 120fps drone",
+      "image": "https://thenewcamera.com/wp-content/uploads/2025/08/INSTA-ANTIGRAVITY-A1-IMAGE.jpg"
     }
   ],
   "cart": [
     {
-      "id": "6",
-      "title": "Mavic 2",
-      "description": "Classic black finish for the professional look.",
-      "price": "$999",
-      "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
+      "id": "5",
+      "title": "DJI Mavic",
+      "description": "Bigger screen, better battery, same stunning performance.",
+      "price": "$1299",
+      "image": "https://images.pexels.com/photos/13310710/pexels-photo-13310710.jpeg",
+      "category": "drone"
+    },
+    {
+      "id": "4",
+      "title": "DJI Mini 5 Pro",
+      "description": "Experience the future with the stunning avoidance system.",
+      "price": "$1199",
+      "image": "https://images.pexels.com/photos/724921/pexels-photo-724921.jpeg",
       "category": "drone"
     }
   ]
