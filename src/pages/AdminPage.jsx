@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom"; // ১. Link ইম্পোর্ট করতে হবে
+import { Link } from "react-router-dom";
 
 function AdminPage() {
-  // useNavigate আর লাগছে না, তাই সরিয়ে ফেললাম
-
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="text-center space-y-8 bg-white p-10 rounded-xl shadow-xl border border-gray-100 max-w-md w-full">
+        {/* --- Header --- */}
         <div>
           <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
             Admin Dashboard
@@ -14,14 +13,16 @@ function AdminPage() {
           <p className="text-gray-500">Manage your inventory efficiently</p>
         </div>
 
-        <div className="flex justify-center">
-          {/* ২. button ট্যাগ সরিয়ে Link বসালাম */}
+        {/* --- Buttons Section --- */}
+        {/* Core Concept: flex-col ব্যবহার করেছি যাতে বাটনগুলো উপর-নিচে থাকে */}
+        <div className="flex flex-col gap-4 justify-center">
+          {/* 1. Add Product Button (Blue) */}
           <Link
-            to="/admin/addproduct" // ৩. আপনার App.js এর রাউট পাথ বসালাম
-            className="group flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1"
+            to="/admin/addproduct"
+            className="group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 w-full"
           >
             <span className="text-lg">Add Product</span>
-
+            {/* Arrow Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -34,6 +35,30 @@ function AdminPage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </Link>
+
+          {/* 2. All Products Button (Green) */}
+          {/* কালার পরিবর্তন করেছি (bg-green-600) যাতে দুটো আলাদা বোঝা যায় */}
+          <Link
+            to="/admin/allproducts"
+            className="group flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-green-500/30 transition-all duration-300 transform hover:-translate-y-1 w-full"
+          >
+            <span className="text-lg">All Products</span>
+            {/* List Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+              stroke="currentColor"
+              className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
           </Link>
