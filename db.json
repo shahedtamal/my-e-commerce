@@ -55,6 +55,14 @@
       "price": "$1599",
       "description": "First 360 8k 120fps drone",
       "image": "https://thenewcamera.com/wp-content/uploads/2025/08/INSTA-ANTIGRAVITY-A1-IMAGE.jpg"
+    },
+    {
+      "id": "813a",
+      "title": "DJI Inspire 1 Pro",
+      "category": "drone",
+      "price": "$2,000",
+      "description": " A solid professional drone running under US$5,000.",
+      "image": "https://innovatek.co.nz/wp-content/uploads/2024/01/Drone6-560x315-1.jpg"
     }
   ],
   "cart": [

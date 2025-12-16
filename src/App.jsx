@@ -6,6 +6,8 @@ import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LoginPage";
+import AddProducts from "./pages/AddProducts.jsx";
+import AllProducts from "./pages/AllProducts.jsx";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin/addproduct" element={<AddProducts />} />
+        <Route path="/admin/allproducts" element={<AllProducts />} />
       </Routes>
     </BrowserRouter>
   );
