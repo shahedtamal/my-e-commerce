@@ -1,6 +1,6 @@
 // src/pages/AddProducts.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ১. রিডাইরেক্ট করার জন্য
+import { useNavigate } from "react-router-dom";
 
 function AddProducts() {
   const navigate = useNavigate();
@@ -14,32 +14,35 @@ function AddProducts() {
     image: "",
   });
 
-  // ইনপুট হ্যান্ডলার
+  // input Handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
 
-  // সাবমিট ফাংশন
+  // addproduct handler
   const handleAddProduct = async (e) => {
-    e.preventDefault(); // ফর্ম রিলোড আটকানো
+    e.preventDefault();
 
-    // ভ্যালিডেশন
     if (!newProduct.title || !newProduct.price) {
       alert("Please fill Title and Price");
       return;
     }
+    const productTosend = {
+      ...newProduct,
+      price: `$${newProduct.price}`, // Price => string
+    };
 
     try {
       const res = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newProduct),
+        body: JSON.stringify(productTosend),
       });
 
       if (res.ok) {
         alert("Product Added Successfully!");
-        // ২. সফল হলে All Products পেজে পাঠিয়ে দিন
+        //success auto all product page e navigate hoye jabe
         navigate("/admin/allproducts");
       }
     } catch (error) {
@@ -105,11 +108,11 @@ function AddProducts() {
                 Price
               </label>
               <input
-                type="text"
+                type="number"
                 name="price"
                 value={newProduct.price}
                 onChange={handleInputChange}
-                placeholder="$0.00"
+                placeholder="2000"
                 className="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>

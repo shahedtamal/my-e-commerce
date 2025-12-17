@@ -40,7 +40,7 @@ function CartPage() {
   const shipping = 15;
   let cartTotal = 0;
   for (const item of cartData) {
-    const price = Number(item.price.replace("$", ""));
+    const price = Number(item.price.replace("$", "").replace(",", ""));
     cartTotal = cartTotal + price * (quantity[item.id] || 1);
   }
   async function Delete(item) {

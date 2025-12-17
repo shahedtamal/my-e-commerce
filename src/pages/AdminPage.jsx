@@ -8,15 +8,12 @@ function AdminPage() {
         {/* --- Header --- */}
         <div>
           <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
-            Admin Dashboard
+            Welcome To Admin Dashboard
           </h1>
           <p className="text-gray-500">Manage your inventory efficiently</p>
         </div>
 
-        {/* --- Buttons Section --- */}
-        {/* Core Concept: flex-col ব্যবহার করেছি যাতে বাটনগুলো উপর-নিচে থাকে */}
         <div className="flex flex-col gap-4 justify-center">
-          {/* 1. Add Product Button (Blue) */}
           <Link
             to="/admin/addproduct"
             className="group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 w-full"
@@ -39,8 +36,6 @@ function AdminPage() {
             </svg>
           </Link>
 
-          {/* 2. All Products Button (Green) */}
-          {/* কালার পরিবর্তন করেছি (bg-green-600) যাতে দুটো আলাদা বোঝা যায় */}
           <Link
             to="/admin/allproducts"
             className="group flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-green-500/30 transition-all duration-300 transform hover:-translate-y-1 w-full"

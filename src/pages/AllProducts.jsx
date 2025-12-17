@@ -12,22 +12,22 @@ function AllProducts() {
       .catch((error) => console.log("Fetching failed", error));
   }, []);
 
-  // ২. ডিলিট ফাংশন (Delete Functionality)
+  //(Delete Functionality)
   const handleDelete = async (id) => {
-    // কনফার্মেশন ডায়ালগ
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this product?"
     );
 
     if (confirmDelete) {
       try {
-        // সার্ভার থেকে ডিলিট রিকোয়েস্ট পাঠানো
+        // server e delete request pathano
         const res = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
           method: "DELETE",
         });
 
         if (res.ok) {
-          // UI থেকে আইটেমটি সরিয়ে ফেলা (পেইজ রিফ্রেশ ছাড়া)
+          // referesh chara ui theke item shorano
+          //ekhane condition false hole delete hobe... true hole reamain hobe
           const remainingProducts = products.filter((item) => item.id !== id);
           setProducts(remainingProducts);
           alert("Product Deleted Successfully!");
@@ -69,9 +69,7 @@ function AllProducts() {
               products.map((item, index) => (
                 <tr
                   key={item.id}
-                  className={`border-b hover:bg-gray-50 ${
-                    index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  }`}
+                  className="border-b bg-white hover:bg-gray-50 transition duration-150"
                 >
                   {/* Serial Number */}
                   <td className="p-4 font-medium text-gray-600">{index + 1}</td>
