@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "title": "iPhone 17 Pro - Silver",
-      "description": "Experience the future with the stunning Silver Titanium finish.",
-      "price": "$1199",
-      "image": "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1480&auto=format&fit=crop",
-      "category": "phone"
-    },
-    {
       "id": "2",
       "title": "iPhone 17 Pro - Max",
       "description": "Bigger screen, better battery, same stunning performance.",
@@ -75,14 +67,6 @@
   ],
   "cart": [
     {
-      "id": "1",
-      "title": "iPhone 17 Pro - Silver",
-      "description": "Experience the future with the stunning Silver Titanium finish.",
-      "price": "$1199",
-      "image": "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1480&auto=format&fit=crop",
-      "category": "phone"
-    },
-    {
       "id": "3",
       "title": "iPhone 17 - Black",
       "description": "Classic black finish for the professional look.",
@@ -105,14 +89,6 @@
       "price": "$999",
       "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
       "category": "drone"
-    },
-    {
-      "id": "1eab",
-      "title": "AntiGravity A1",
-      "category": "drone",
-      "price": "$1599",
-      "description": "First 360 8k 120fps drone",
-      "image": "https://thenewcamera.com/wp-content/uploads/2025/08/INSTA-ANTIGRAVITY-A1-IMAGE.jpg"
     }
   ]
 }

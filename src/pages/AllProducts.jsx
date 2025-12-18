@@ -4,7 +4,17 @@ import { Link } from "react-router-dom";
 function AllProducts() {
   const [products, setProducts] = useState([]);
 
-  // ১. ডাটা লোড করা
+  // State for Editing
+  const [editId, setEditId] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    title: "",
+    category: "",
+    price: "",
+    description: "",
+    image: "",
+  });
+
+  // 1. Fetch Data
   useEffect(() => {
     fetch(import.meta.env.VITE_API_URL)
       .then((res) => res.json())
@@ -12,37 +22,67 @@ function AllProducts() {
       .catch((error) => console.log("Fetching failed", error));
   }, []);
 
-  //(Delete Functionality)
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this product?"
-    );
+  // 2. Input Handler
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditFormData({ ...editFormData, [name]: value });
+  };
 
-    if (confirmDelete) {
-      try {
-        // server e delete request pathano
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
-          method: "DELETE",
-        });
+  // 3. Edit Click Handler
+  const handleEditClick = (item) => {
+    setEditId(item.id); // Enable Edit Mode for this row
+    const cleanPrice = item.price.replace("$", "").replace(",", "");
+    setEditFormData({ ...item, price: cleanPrice });
+  };
 
-        if (res.ok) {
-          // referesh chara ui theke item shorano
-          //ekhane condition false hole delete hobe... true hole reamain hobe
-          const remainingProducts = products.filter((item) => item.id !== id);
-          setProducts(remainingProducts);
-          alert("Product Deleted Successfully!");
-        } else {
-          alert("Failed to delete product.");
-        }
-      } catch (error) {
-        console.log("Error deleting product:", error);
+  // 4. Cancel Handler
+  const handleCancelClick = () => {
+    setEditId(null);
+  };
+
+  // 5. Update Function
+  const handleUpdate = async () => {
+    const productTosend = {
+      ...editFormData,
+      price: `$${editFormData.price}`,
+    };
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/${editId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(productTosend),
+      });
+
+      if (res.ok) {
+        const updatedProduct = await res.json();
+        setProducts(
+          products.map((item) => (item.id === editId ? updatedProduct : item))
+        );
+        setEditId(null); // Stop editing
+        alert("Updated Successfully!");
       }
+    } catch (error) {
+      console.error("Error updating product:", error);
     }
   };
 
+  // 6. Delete Function
+  async function Delete(id) {
+    let choice = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (choice) {
+      await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        method: "DELETE",
+      });
+      setProducts(products.filter((item) => item.id !== id));
+      alert("Product Deleted Successfully!");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 p-10">
-      {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">All Products List</h1>
         <Link to="/admin" className="text-blue-600 hover:underline font-medium">
@@ -50,7 +90,6 @@ function AllProducts() {
         </Link>
       </div>
 
-      {/* Table Section */}
       <div className="overflow-x-auto shadow-lg rounded-lg bg-white">
         <table className="w-full text-left border-collapse">
           <thead className="bg-gray-800 text-white">
@@ -67,46 +106,118 @@ function AllProducts() {
           <tbody>
             {products.length > 0 ? (
               products.map((item, index) => (
-                <tr
-                  key={item.id}
-                  className="border-b bg-white hover:bg-gray-50 transition duration-150"
-                >
-                  {/* Serial Number */}
-                  <td className="p-4 font-medium text-gray-600">{index + 1}</td>
-
-                  <td className="p-4">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-12 h-12 object-cover rounded border"
-                    />
-                  </td>
-                  <td className="p-4 font-semibold">{item.title}</td>
-                  <td className="p-4">
-                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
-                      {item.category}
-                    </span>
-                  </td>
-                  <td className="p-4 font-bold text-green-600">{item.price}</td>
-
-                  {/* Description (Shortened) */}
-                  <td className="p-4 text-sm text-gray-500 max-w-xs">
-                    {item.description
-                      ? item.description.slice(0, 30) + "..."
-                      : "No Desc"}
-                  </td>
-
-                  {/* Action Button */}
-                  <td className="p-4">
-                    <button
-                      // ৩. এখানে অনক্লিক হ্যান্ডলার যোগ করা হয়েছে
-                      onClick={() => handleDelete(item.id)}
-                      className="text-red-500 hover:text-red-700 font-bold transition duration-200"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+                <React.Fragment key={item.id}>
+                  {/* --- শর্ত: যদি এই আইটেমটাই এডিট করা হচ্ছে --- */}
+                  {editId === item.id ? (
+                    <tr className="bg-blue-50 border-b">
+                      <td className="p-4">{index + 1}</td>
+                      <td className="p-4">
+                        <input
+                          type="text"
+                          name="image"
+                          value={editFormData.image}
+                          onChange={handleEditChange}
+                          className="w-full border p-1 rounded"
+                          placeholder="Img URL"
+                        />
+                      </td>
+                      <td className="p-4">
+                        <input
+                          type="text"
+                          name="title"
+                          value={editFormData.title}
+                          onChange={handleEditChange}
+                          className="w-full border p-1 rounded"
+                        />
+                      </td>
+                      <td className="p-4">
+                        <input
+                          type="text"
+                          name="category"
+                          value={editFormData.category}
+                          onChange={handleEditChange}
+                          className="w-full border p-1 rounded"
+                        />
+                      </td>
+                      <td className="p-4">
+                        <input
+                          type="number"
+                          name="price"
+                          value={editFormData.price}
+                          onChange={handleEditChange}
+                          className="w-full border p-1 rounded"
+                        />
+                      </td>
+                      <td className="p-4">
+                        <textarea
+                          name="description"
+                          value={editFormData.description}
+                          onChange={handleEditChange}
+                          className="w-full border p-1 rounded"
+                          rows="1"
+                        />
+                      </td>
+                      <td className="p-4 flex gap-2">
+                        <button
+                          onClick={handleUpdate}
+                          className="bg-green-600 text-white px-2 py-1 rounded text-sm font-bold"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={handleCancelClick}
+                          className="bg-gray-500 text-white px-2 py-1 rounded text-sm font-bold"
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+                  ) : (
+                    /* --- শর্ত না মিললে: নরমাল ভিউ --- */
+                    <tr className="border-b bg-white hover:bg-gray-50">
+                      <td className="p-4 font-medium text-gray-600">
+                        {index + 1}
+                      </td>
+                      <td className="p-4">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-12 h-12 object-cover rounded border"
+                        />
+                      </td>
+                      <td className="p-4 font-semibold">{item.title}</td>
+                      <td className="p-4">
+                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+                          {item.category}
+                        </span>
+                      </td>
+                      <td className="p-4 font-bold text-green-600">
+                        {item.price}
+                      </td>
+                      <td className="p-4 text-sm text-gray-500 max-w-xs">
+                        {item.description
+                          ? item.description.slice(0, 30) + "..."
+                          : "No Desc"}
+                      </td>
+                      <td className="p-4">
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleEditClick(item)}
+                            className="px-3 py-1 text-sm font-bold text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => Delete(item.id)}
+                            className="px-3 py-1 text-sm font-bold text-red-600 border border-red-600 rounded hover:bg-red-50"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))
             ) : (
               <tr>
