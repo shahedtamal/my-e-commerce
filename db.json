@@ -63,6 +63,14 @@
       "price": "$2120",
       "description": "The Galaxy Z Fold7 features a slimmer and lighter design compared to its predecessor, a powerful processor, and an upgraded camera system.",
       "image": "https://images.samsung.com/ca/smartphones/galaxy-z-fold7/buy/product_color_blueShadow_MO.png?imbypass=true"
+    },
+    {
+      "id": "11b1",
+      "title": "Z Flip 7",
+      "category": "phone",
+      "price": "$1099",
+      "description": "Flip into style and performance with Galaxy Z Flip7—featuring a 50MP selfie camera, a sleek, durable design, and the most powerful Galaxy AI tools yet.",
+      "image": "https://www.geeky-gadgets.com/wp-content/uploads/2025/03/galaxy-z-flip-7-durability-and-hinge-design.webp"
     }
   ],
   "cart": [
@@ -75,20 +83,12 @@
       "category": "phone"
     },
     {
-      "id": "2",
-      "title": "iPhone 17 Pro - Max",
-      "description": "Bigger screen, better battery, same stunning performance.",
-      "price": "$1299",
-      "image": "https://images.unsplash.com/photo-1759588071781-2c3ba9128497?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "category": "phone"
-    },
-    {
-      "id": "6",
-      "title": "Mavic 2",
-      "description": "Classic black finish for the professional look.",
-      "price": "$999",
-      "image": "https://images.pexels.com/photos/18286450/pexels-photo-18286450.jpeg",
-      "category": "drone"
+      "id": "d802",
+      "title": "galaxy Z-Fold 7",
+      "category": "phone",
+      "price": "$2120",
+      "description": "The Galaxy Z Fold7 features a slimmer and lighter design compared to its predecessor, a powerful processor, and an upgraded camera system.",
+      "image": "https://images.samsung.com/ca/smartphones/galaxy-z-fold7/buy/product_color_blueShadow_MO.png?imbypass=true"
     }
   ]
 }
