@@ -13,13 +13,16 @@ function AllProducts() {
     description: "",
     image: "",
   });
-
-  // 1. Fetch Data
-  useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL)
+  function getProducts() {
+    return fetch(import.meta.env.VITE_API_URL)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((error) => console.log("Fetching failed", error));
+  }
+
+  // 1. Fetch Data
+  useEffect(() => {
+    getProducts();
   }, []);
 
   // 2. Input Handler
@@ -192,7 +195,7 @@ function AllProducts() {
                         </span>
                       </td>
                       <td className="p-4 font-bold text-green-600">
-                        {item.price}
+                        ${item.price}
                       </td>
                       <td className="p-4 text-sm text-gray-500 max-w-xs">
                         {item.description
