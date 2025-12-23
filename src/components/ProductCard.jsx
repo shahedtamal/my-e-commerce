@@ -21,7 +21,7 @@ function ProductCard({
         <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
         <div className="flex justify-between items-center mt-4">
-          <span className="text-2xl font-bold text-blue-600">{price}</span>
+          <span className="text-2xl font-bold text-blue-600">${price}</span>
           <button
             disabled={isAdded}
             className={`px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 ${

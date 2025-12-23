@@ -96,7 +96,7 @@ function CartPage() {
                             {item.title}
                           </h3>
                           <p className="text-blue-600 font-bold text-lg mt-2">
-                            {item.price}
+                            ${item.price}
                           </p>
                           <div className="mt-2 flex gap-2 items-center">
                             <p className="text-gray-500 mt-2">

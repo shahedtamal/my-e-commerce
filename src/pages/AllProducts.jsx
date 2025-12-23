@@ -33,9 +33,8 @@ function AllProducts() {
 
   // 3. Edit Click Handler
   const handleEditClick = (item) => {
-    setEditId(item.id); // Enable Edit Mode for this row
-    const cleanPrice = item.price.replace("$", "").replace(",", "");
-    setEditFormData({ ...item, price: cleanPrice });
+    setEditId(item.id);
+    setEditFormData(item);
   };
 
   // 4. Cancel Handler
@@ -47,7 +46,6 @@ function AllProducts() {
   const handleUpdate = async () => {
     const productTosend = {
       ...editFormData,
-      price: `$${editFormData.price}`,
     };
 
     try {

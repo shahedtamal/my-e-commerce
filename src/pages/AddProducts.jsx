@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 function AddProducts() {
   const navigate = useNavigate();
 
-  // ইনপুট স্টেট
   const [newProduct, setNewProduct] = useState({
     title: "",
     category: "",
@@ -13,7 +12,6 @@ function AddProducts() {
     description: "",
     image: "",
   });
-
   // input Handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +26,7 @@ function AddProducts() {
       alert("Please fill Title and Price");
       return;
     }
-    const productTosend = {
-      ...newProduct,
-      price: `$${newProduct.price}`, // Price => string
-    };
+    const productTosend = { ...newProduct };
 
     try {
       const res = await fetch(import.meta.env.VITE_API_URL, {
@@ -110,7 +105,6 @@ function AddProducts() {
               <input
                 type="number"
                 name="price"
-                value={newProduct.price}
                 onChange={handleInputChange}
                 placeholder="2000"
                 className="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
